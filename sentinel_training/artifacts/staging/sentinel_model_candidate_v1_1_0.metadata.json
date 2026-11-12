@@ -1,0 +1,110 @@
+{
+  "algorithm": "HistGradientBoostingClassifier",
+  "candidate_model_sha256": "3c6fffc5dac3324fefbd043bcf532e909f9b5b2983d3ce1fd604a4efc3173e57",
+  "dataset": {
+    "rows": 90836,
+    "sha256": "61b67ccfd0c4b01b0c628ee7c9a32cba0149b5e1fe56619bbae1373bbd5b3e66"
+  },
+  "feature_schema": [
+    {
+      "dtype": "float64",
+      "missing_values": 0,
+      "name": "absolute_magnitude",
+      "observed_max": 33.2,
+      "observed_min": 9.23,
+      "required": true,
+      "unit": "mag",
+      "unit_verification": "Declared in legacy deployment metadata; source-level CSV metadata was not supplied.",
+      "validation_note": "Finite numeric value within the observed dataset bounds for benchmark input checks."
+    },
+    {
+      "dtype": "float64",
+      "missing_values": 0,
+      "name": "relative_velocity",
+      "observed_max": 236990.1280878666,
+      "observed_min": 203.34643253,
+      "required": true,
+      "unit": "km/h",
+      "unit_verification": "Declared in legacy deployment metadata; source-level CSV metadata was not supplied.",
+      "validation_note": "Finite numeric value within the observed dataset bounds for benchmark input checks."
+    },
+    {
+      "dtype": "float64",
+      "missing_values": 0,
+      "name": "miss_distance",
+      "observed_max": 74798651.4521972,
+      "observed_min": 6745.532515957,
+      "required": true,
+      "unit": "km",
+      "unit_verification": "Declared in legacy deployment metadata; source-level CSV metadata was not supplied.",
+      "validation_note": "Finite numeric value within the observed dataset bounds for benchmark input checks."
+    }
+  ],
+  "features": [
+    "absolute_magnitude",
+    "relative_velocity",
+    "miss_distance"
+  ],
+  "legacy_comparison": {
+    "legacy_model_sha256": "e5479eebbaec131087521b62b3eeb9ec07dd0ad44fdbc422f79411a71e0830d2",
+    "legacy_version": "1.0.0",
+    "note": "Scores are compared on deterministic shared inputs but equality is not expected because legacy training provenance is incomplete."
+  },
+  "limitations": [
+    "This estimates the historical hazardous label in the provided data, not collision or impact probability.",
+    "CSV-level source metadata, unit provenance, and hazardous-label definition remain unresolved.",
+    "This benchmark split may contain observations previously examined during model development and is not guaranteed to be an independent untouched holdout.",
+    "The staged candidate is not connected to the running API or frontend."
+  ],
+  "model_name": "Project Sentinel staged candidate",
+  "model_parameters": {
+    "l2_regularization": 5,
+    "learning_rate": 0.03,
+    "max_iter": 150,
+    "max_leaf_nodes": 31,
+    "random_state": 42
+  },
+  "model_version": "1.1.0-reproducibility-benchmark",
+  "sklearn_version": "1.6.1",
+  "split_manifest": "sentinel_training/splits/split_manifest.json",
+  "split_manifest_sha256": "81f4c0ed41c7c4b27b3dac4e95e10b14bb6186b0ba2b0b5cc936fe07b94e1656",
+  "status": "staged only; not active deployment artifact",
+  "test_metrics": "Not computed before final evaluation authorization; the test partition remains unscored by this script.",
+  "threshold": 0.09935210419840797,
+  "threshold_selection": {
+    "candidate_count": 5803,
+    "eligible_candidate_count": 1056,
+    "method": "maximize F2 among thresholds with hazardous recall >= 0.95; deterministic ties prefer higher precision then lower threshold",
+    "minimum_hazardous_recall": 0.95,
+    "selected_validation_metrics": {
+      "f2": 0.6797867335737807,
+      "hazardous_recall": 0.9796610169491525,
+      "precision": 0.30560451180824816,
+      "threshold": 0.09935210419840797
+    }
+  },
+  "validation_metrics": {
+    "balanced_accuracy": 0.8670355200060853,
+    "confusion_matrix": [
+      [
+        12103,
+        3940
+      ],
+      [
+        36,
+        1734
+      ]
+    ],
+    "confusion_matrix_labels": [
+      "actual_non_hazardous",
+      "actual_hazardous"
+    ],
+    "f1": 0.4658785599140247,
+    "f2": 0.6797867335737807,
+    "hazardous_recall": 0.9796610169491525,
+    "pr_auc": 0.4868969684542038,
+    "precision": 0.30560451180824816,
+    "rows": 17813,
+    "threshold": 0.09935210419840797
+  }
+}

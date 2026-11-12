@@ -1,0 +1,79 @@
+{
+  "asteroid_ids_with_repeated_observations": 15902,
+  "canonical_feature_units": {
+    "absolute_magnitude": {
+      "value": "mag",
+      "verification": "Declared in legacy deployment metadata; source-level CSV metadata was not supplied."
+    },
+    "miss_distance": {
+      "value": "km",
+      "verification": "Declared in legacy deployment metadata; source-level CSV metadata was not supplied."
+    },
+    "relative_velocity": {
+      "value": "km/h",
+      "verification": "Declared in legacy deployment metadata; source-level CSV metadata was not supplied."
+    }
+  },
+  "columns": [
+    "id",
+    "name",
+    "est_diameter_min",
+    "est_diameter_max",
+    "relative_velocity",
+    "miss_distance",
+    "orbiting_body",
+    "sentry_object",
+    "absolute_magnitude",
+    "hazardous"
+  ],
+  "constant_columns": [
+    "orbiting_body",
+    "sentry_object"
+  ],
+  "dataset_path": "/Users/baburreyan/Downloads/neo (3).csv",
+  "dtypes": {
+    "absolute_magnitude": "float64",
+    "est_diameter_max": "float64",
+    "est_diameter_min": "float64",
+    "hazardous": "bool",
+    "id": "int64",
+    "miss_distance": "float64",
+    "name": "object",
+    "orbiting_body": "object",
+    "relative_velocity": "float64",
+    "sentry_object": "bool"
+  },
+  "exact_duplicate_rows": 0,
+  "missing_values": {
+    "absolute_magnitude": 0,
+    "est_diameter_max": 0,
+    "est_diameter_min": 0,
+    "hazardous": 0,
+    "id": 0,
+    "miss_distance": 0,
+    "name": 0,
+    "orbiting_body": 0,
+    "relative_velocity": 0,
+    "sentry_object": 0
+  },
+  "nonfinite_numeric_values": 0,
+  "provenance_limitations": [
+    "The provided CSV filename suggests NEO data, but a source URL, release/version, and field dictionary were not supplied.",
+    "The hazardous label definition is not independently verified from source metadata.",
+    "Declared units come from the legacy deployment metadata and remain unresolved at the CSV source level."
+  ],
+  "rows": 90836,
+  "rows_with_repeated_asteroid_id": 79315,
+  "sha256": "61b67ccfd0c4b01b0c628ee7c9a32cba0149b5e1fe56619bbae1373bbd5b3e66",
+  "target_distribution": {
+    "False": {
+      "prevalence": 0.90268175613193,
+      "rows": 81996
+    },
+    "True": {
+      "prevalence": 0.09731824386806993,
+      "rows": 8840
+    }
+  },
+  "unique_asteroid_ids": 27423
+}

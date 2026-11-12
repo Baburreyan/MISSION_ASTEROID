@@ -1,0 +1,27 @@
+{
+  "legacy_version": "1.0.0",
+  "metadata_path": "/Users/baburreyan/Downloads/model_metadata.json",
+  "metadata_sha256": "62af9b93504d467695a7d8839a2faaf766bea42f79dd9dde601015f7629d4d59",
+  "metadata_snapshot": {
+    "algorithm": "HistGradientBoostingClassifier",
+    "features": [
+      "absolute_magnitude",
+      "relative_velocity",
+      "miss_distance"
+    ],
+    "impact_prediction": false,
+    "model_name": "Project Sentinel",
+    "model_version": "1.0.0",
+    "prediction_task": "Historical hazardous-label classification",
+    "sklearn_version": "1.6.1",
+    "threshold": 0.0815,
+    "units": {
+      "absolute_magnitude": "mag",
+      "miss_distance": "km",
+      "relative_velocity": "km/h"
+    }
+  },
+  "model_path": "/Users/baburreyan/Downloads/sentinel_model.joblib",
+  "model_sha256": "e5479eebbaec131087521b62b3eeb9ec07dd0ad44fdbc422f79411a71e0830d2",
+  "status": "preserved; not modified, renamed, or used as the active candidate"
+}

@@ -1,0 +1,256 @@
+{
+  "dataset_provenance": {
+    "asteroid_ids_with_repeated_observations": 15902,
+    "canonical_feature_units": {
+      "absolute_magnitude": {
+        "value": "mag",
+        "verification": "Declared in legacy deployment metadata; source-level CSV metadata was not supplied."
+      },
+      "miss_distance": {
+        "value": "km",
+        "verification": "Declared in legacy deployment metadata; source-level CSV metadata was not supplied."
+      },
+      "relative_velocity": {
+        "value": "km/h",
+        "verification": "Declared in legacy deployment metadata; source-level CSV metadata was not supplied."
+      }
+    },
+    "columns": [
+      "id",
+      "name",
+      "est_diameter_min",
+      "est_diameter_max",
+      "relative_velocity",
+      "miss_distance",
+      "orbiting_body",
+      "sentry_object",
+      "absolute_magnitude",
+      "hazardous"
+    ],
+    "constant_columns": [
+      "orbiting_body",
+      "sentry_object"
+    ],
+    "dataset_path": "/Users/baburreyan/Downloads/neo (3).csv",
+    "dtypes": {
+      "absolute_magnitude": "float64",
+      "est_diameter_max": "float64",
+      "est_diameter_min": "float64",
+      "hazardous": "bool",
+      "id": "int64",
+      "miss_distance": "float64",
+      "name": "object",
+      "orbiting_body": "object",
+      "relative_velocity": "float64",
+      "sentry_object": "bool"
+    },
+    "exact_duplicate_rows": 0,
+    "missing_values": {
+      "absolute_magnitude": 0,
+      "est_diameter_max": 0,
+      "est_diameter_min": 0,
+      "hazardous": 0,
+      "id": 0,
+      "miss_distance": 0,
+      "name": 0,
+      "orbiting_body": 0,
+      "relative_velocity": 0,
+      "sentry_object": 0
+    },
+    "nonfinite_numeric_values": 0,
+    "provenance_limitations": [
+      "The provided CSV filename suggests NEO data, but a source URL, release/version, and field dictionary were not supplied.",
+      "The hazardous label definition is not independently verified from source metadata.",
+      "Declared units come from the legacy deployment metadata and remain unresolved at the CSV source level."
+    ],
+    "rows": 90836,
+    "rows_with_repeated_asteroid_id": 79315,
+    "sha256": "61b67ccfd0c4b01b0c628ee7c9a32cba0149b5e1fe56619bbae1373bbd5b3e66",
+    "target_distribution": {
+      "False": {
+        "prevalence": 0.90268175613193,
+        "rows": 81996
+      },
+      "True": {
+        "prevalence": 0.09731824386806993,
+        "rows": 8840
+      }
+    },
+    "unique_asteroid_ids": 27423
+  },
+  "feature_schema": [
+    {
+      "dtype": "float64",
+      "missing_values": 0,
+      "name": "absolute_magnitude",
+      "observed_max": 33.2,
+      "observed_min": 9.23,
+      "required": true,
+      "unit": "mag",
+      "unit_verification": "Declared in legacy deployment metadata; source-level CSV metadata was not supplied.",
+      "validation_note": "Finite numeric value within the observed dataset bounds for benchmark input checks."
+    },
+    {
+      "dtype": "float64",
+      "missing_values": 0,
+      "name": "relative_velocity",
+      "observed_max": 236990.1280878666,
+      "observed_min": 203.34643253,
+      "required": true,
+      "unit": "km/h",
+      "unit_verification": "Declared in legacy deployment metadata; source-level CSV metadata was not supplied.",
+      "validation_note": "Finite numeric value within the observed dataset bounds for benchmark input checks."
+    },
+    {
+      "dtype": "float64",
+      "missing_values": 0,
+      "name": "miss_distance",
+      "observed_max": 74798651.4521972,
+      "observed_min": 6745.532515957,
+      "required": true,
+      "unit": "km",
+      "unit_verification": "Declared in legacy deployment metadata; source-level CSV metadata was not supplied.",
+      "validation_note": "Finite numeric value within the observed dataset bounds for benchmark input checks."
+    }
+  ],
+  "legacy_preservation": {
+    "legacy_version": "1.0.0",
+    "metadata_path": "/Users/baburreyan/Downloads/model_metadata.json",
+    "metadata_sha256": "62af9b93504d467695a7d8839a2faaf766bea42f79dd9dde601015f7629d4d59",
+    "metadata_snapshot": {
+      "algorithm": "HistGradientBoostingClassifier",
+      "features": [
+        "absolute_magnitude",
+        "relative_velocity",
+        "miss_distance"
+      ],
+      "impact_prediction": false,
+      "model_name": "Project Sentinel",
+      "model_version": "1.0.0",
+      "prediction_task": "Historical hazardous-label classification",
+      "sklearn_version": "1.6.1",
+      "threshold": 0.0815,
+      "units": {
+        "absolute_magnitude": "mag",
+        "miss_distance": "km",
+        "relative_velocity": "km/h"
+      }
+    },
+    "model_path": "/Users/baburreyan/Downloads/sentinel_model.joblib",
+    "model_sha256": "e5479eebbaec131087521b62b3eeb9ec07dd0ad44fdbc422f79411a71e0830d2",
+    "status": "preserved; not modified, renamed, or used as the active candidate"
+  },
+  "model_parameters": {
+    "l2_regularization": 5,
+    "learning_rate": 0.03,
+    "max_iter": 150,
+    "max_leaf_nodes": 31,
+    "random_state": 42
+  },
+  "platform": "macOS-26.5.2-arm64-arm-64bit",
+  "python_version": "3.12.14 (main, Aug 25 2026, 13:50:33) [Clang 22.1.3 ]",
+  "reference_fixture": "sentinel_training/artifacts/staging/reference_prediction_fixture.json",
+  "run_status": "completed_without_test_scoring",
+  "sklearn_version": "1.6.1",
+  "split_summary": {
+    "group_column": "id",
+    "integrity_checks": {
+      "all_unique_ids_assigned_once": true,
+      "same_id_target_conflicts": 0,
+      "train_test_disjoint": true,
+      "train_validation_disjoint": true,
+      "validation_test_disjoint": true
+    },
+    "interpretation_caveat": "Earlier model-development work may have examined observations in this CSV. This deterministic split is a reproducibility benchmark, not a demonstrably untouched independent holdout.",
+    "manifests": {
+      "test": {
+        "count": 5485,
+        "path": "sentinel_training/splits/test_asteroid_ids.txt",
+        "sha256": "8228dd27673a83802746f269bb64bafe82dd6eb402f3d6c8077e64ac572f8500"
+      },
+      "train": {
+        "count": 16453,
+        "path": "sentinel_training/splits/train_asteroid_ids.txt",
+        "sha256": "903502f6ddc8273749b36a019a126dddb6b70a5d26fd7e18b966007901494197"
+      },
+      "validation": {
+        "count": 5485,
+        "path": "sentinel_training/splits/validation_asteroid_ids.txt",
+        "sha256": "1700d03bf4b0f51dae4d2759248623744477728e13b3809cd6f2146260cbdcd0"
+      }
+    },
+    "method": "two-stage stratified split of unique asteroid IDs",
+    "partitions": {
+      "test": {
+        "hazardous_prevalence": 0.09688111280156488,
+        "hazardous_rows": 1783,
+        "rows": 18404,
+        "unique_asteroid_ids": 5485
+      },
+      "train": {
+        "hazardous_prevalence": 0.09679781760925685,
+        "hazardous_rows": 5287,
+        "rows": 54619,
+        "unique_asteroid_ids": 16453
+      },
+      "validation": {
+        "hazardous_prevalence": 0.09936563184191322,
+        "hazardous_rows": 1770,
+        "rows": 17813,
+        "unique_asteroid_ids": 5485
+      }
+    },
+    "seeds": {
+      "test_group_split": 42,
+      "validation_group_split": 43
+    },
+    "target_column": "hazardous"
+  },
+  "staged_model": {
+    "path": "sentinel_training/artifacts/staging/sentinel_model_candidate_v1_1_0.joblib",
+    "reloaded_predictions_identical": true,
+    "sha256": "3c6fffc5dac3324fefbd043bcf532e909f9b5b2983d3ce1fd604a4efc3173e57"
+  },
+  "test_partition_status": "Reserved and intentionally not evaluated until the final evaluation step is authorized.",
+  "threshold": 0.09935210419840797,
+  "threshold_selection": {
+    "candidate_count": 5803,
+    "eligible_candidate_count": 1056,
+    "method": "maximize F2 among thresholds with hazardous recall >= 0.95; deterministic ties prefer higher precision then lower threshold",
+    "minimum_hazardous_recall": 0.95,
+    "selected_validation_metrics": {
+      "f2": 0.6797867335737807,
+      "hazardous_recall": 0.9796610169491525,
+      "precision": 0.30560451180824816,
+      "threshold": 0.09935210419840797
+    }
+  },
+  "validation_feature_analysis": {
+    "reason": "Permutation-importance resampling is exploratory and not required to reproduce the candidate fit, threshold, or validation metrics.",
+    "status": "not persisted in the canonical provenance record"
+  },
+  "validation_metrics": {
+    "balanced_accuracy": 0.8670355200060853,
+    "confusion_matrix": [
+      [
+        12103,
+        3940
+      ],
+      [
+        36,
+        1734
+      ]
+    ],
+    "confusion_matrix_labels": [
+      "actual_non_hazardous",
+      "actual_hazardous"
+    ],
+    "f1": 0.4658785599140247,
+    "f2": 0.6797867335737807,
+    "hazardous_recall": 0.9796610169491525,
+    "pr_auc": 0.4868969684542038,
+    "precision": 0.30560451180824816,
+    "rows": 17813,
+    "threshold": 0.09935210419840797
+  }
+}

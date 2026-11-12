@@ -1,0 +1,54 @@
+{
+  "group_column": "id",
+  "integrity_checks": {
+    "all_unique_ids_assigned_once": true,
+    "same_id_target_conflicts": 0,
+    "train_test_disjoint": true,
+    "train_validation_disjoint": true,
+    "validation_test_disjoint": true
+  },
+  "interpretation_caveat": "Earlier model-development work may have examined observations in this CSV. This deterministic split is a reproducibility benchmark, not a demonstrably untouched independent holdout.",
+  "manifests": {
+    "test": {
+      "count": 5485,
+      "path": "sentinel_training/splits/test_asteroid_ids.txt",
+      "sha256": "8228dd27673a83802746f269bb64bafe82dd6eb402f3d6c8077e64ac572f8500"
+    },
+    "train": {
+      "count": 16453,
+      "path": "sentinel_training/splits/train_asteroid_ids.txt",
+      "sha256": "903502f6ddc8273749b36a019a126dddb6b70a5d26fd7e18b966007901494197"
+    },
+    "validation": {
+      "count": 5485,
+      "path": "sentinel_training/splits/validation_asteroid_ids.txt",
+      "sha256": "1700d03bf4b0f51dae4d2759248623744477728e13b3809cd6f2146260cbdcd0"
+    }
+  },
+  "method": "two-stage stratified split of unique asteroid IDs",
+  "partitions": {
+    "test": {
+      "hazardous_prevalence": 0.09688111280156488,
+      "hazardous_rows": 1783,
+      "rows": 18404,
+      "unique_asteroid_ids": 5485
+    },
+    "train": {
+      "hazardous_prevalence": 0.09679781760925685,
+      "hazardous_rows": 5287,
+      "rows": 54619,
+      "unique_asteroid_ids": 16453
+    },
+    "validation": {
+      "hazardous_prevalence": 0.09936563184191322,
+      "hazardous_rows": 1770,
+      "rows": 17813,
+      "unique_asteroid_ids": 5485
+    }
+  },
+  "seeds": {
+    "test_group_split": 42,
+    "validation_group_split": 43
+  },
+  "target_column": "hazardous"
+}

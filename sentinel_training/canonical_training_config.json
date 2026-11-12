@@ -1,0 +1,28 @@
+{
+  "experiment_id": "sentinel-three-feature-reproducibility-benchmark-v1",
+  "candidate_model_version": "1.1.0-reproducibility-benchmark",
+  "dataset_filename": "neo (3).csv",
+  "features": ["absolute_magnitude", "relative_velocity", "miss_distance"],
+  "group_column": "id",
+  "target_column": "hazardous",
+  "split": {
+    "method": "two-stage stratified split of unique asteroid IDs",
+    "test_fraction_of_ids": 0.2,
+    "validation_fraction_of_ids": 0.2,
+    "test_random_state": 42,
+    "validation_random_state": 43
+  },
+  "model": {
+    "algorithm": "HistGradientBoostingClassifier",
+    "learning_rate": 0.03,
+    "max_iter": 150,
+    "max_leaf_nodes": 31,
+    "l2_regularization": 5,
+    "random_state": 42
+  },
+  "threshold_selection": {
+    "partition": "validation",
+    "method": "maximize F2 among thresholds with hazardous recall >= 0.95; deterministic ties prefer higher precision then lower threshold",
+    "minimum_hazardous_recall": 0.95
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "candidate_reload_predictions_identical": true,
+  "candidate_threshold": 0.09935210419840797,
+  "legacy_model_sha256": "e5479eebbaec131087521b62b3eeb9ec07dd0ad44fdbc422f79411a71e0830d2",
+  "legacy_threshold": 0.0815,
+  "purpose": "Deterministic regression fixture and comparison only; score equality is not expected without the missing legacy training provenance.",
+  "records": [
+    {
+      "candidate_label_at_selected_threshold": false,
+      "candidate_score": 0.03274354357105128,
+      "input": {
+        "absolute_magnitude": 16.73,
+        "miss_distance": 54839744.08284605,
+        "relative_velocity": 13569.2492241812
+      },
+      "legacy_label_at_legacy_threshold": false,
+      "legacy_score_at_legacy_threshold": 0.030889136728127167,
+      "source_row_index": 0
+    },
+    {
+      "candidate_label_at_selected_threshold": false,
+      "candidate_score": 0.0012370691587061825,
+      "input": {
+        "absolute_magnitude": 23.61,
+        "miss_distance": 72230722.94656146,
+        "relative_velocity": 29150.0338008482
+      },
+      "legacy_label_at_legacy_threshold": false,
+      "legacy_score_at_legacy_threshold": 0.0012140745926925457,
+      "source_row_index": 45418
+    },
+    {
+      "candidate_label_at_selected_threshold": false,
+      "candidate_score": 0.0012370691587061825,
+      "input": {
+        "absolute_magnitude": 24.12,
+        "miss_distance": 59772130.59268528,
+        "relative_velocity": 27024.4555527296
+      },
+      "legacy_label_at_legacy_threshold": false,
+      "legacy_score_at_legacy_threshold": 0.0012140745926925457,
+      "source_row_index": 90835
+    }
+  ]
+}

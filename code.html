@@ -1,0 +1,644 @@
+<!DOCTYPE html><html class="dark" lang="en"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><meta content="web_standard" name="shell-type"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"><link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"><link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&amp;family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&amp;family=Public+Sans:wght@400;600&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}
+/* Observatory Starfield Twinkling Keyframes */
+@keyframes starTwinkleSlow {
+  0%, 100% { opacity: 0.28; transform: scale(0.92); }
+  50% { opacity: 0.95; transform: scale(1.15); }
+}
+@keyframes starTwinkleMed {
+  0%, 100% { opacity: 0.35; transform: scale(0.95); }
+  45% { opacity: 1; transform: scale(1.22); }
+}
+@keyframes starTwinkleQuick {
+  0%, 100% { opacity: 0.2; transform: scale(0.85); }
+  60% { opacity: 0.88; transform: scale(1.18); }
+}
+@keyframes meteorFlyby {
+  0%, 100% { transform: translate3d(-14px, 12px, 0) rotate(-2deg); }
+  50% { transform: translate3d(18px, -14px, 0) rotate(2deg); }
+}
+.twinkle-slow { animation: starTwinkleSlow 5.4s cubic-bezier(0.4, 0, 0.2, 1) infinite; }
+.twinkle-med { animation: starTwinkleMed 3.8s cubic-bezier(0.4, 0, 0.2, 1) infinite; }
+.twinkle-quick { animation: starTwinkleQuick 2.6s cubic-bezier(0.4, 0, 0.2, 1) infinite; }
+.meteor-flyby { animation: meteorFlyby 10s ease-in-out infinite; will-change: transform; }
+
+:focus-visible { outline: 2px solid #f6bb7e; outline-offset: 3px; }
+@media (max-width: 767px) {
+  header > div { height: auto !important; min-height: 5.75rem; padding-top: 0.5rem; padding-bottom: 0.4rem; align-items: flex-start !important; flex-wrap: wrap !important; }
+  header nav { display: flex !important; order: 3; flex-basis: 100%; width: 100%; max-width: 100%; overflow-x: auto; gap: 1rem; padding-top: 0.35rem; }
+  header nav a { flex: 0 0 auto; font-size: 12px !important; }
+  main { padding-top: 5.75rem !important; }
+}
+
+/* Focused typography and alignment refinement. Existing colors and font families are retained. */
+header > div { position: relative; }
+header .font-headline-md { font-size: 23px !important; line-height: 1.15 !important; }
+header nav { gap: 1.5rem !important; }
+header nav a { font-size: 14px !important; line-height: 1.25 !important; }
+
+#overview-title { font-size: clamp(38px, 3.1vw, 42px) !important; line-height: 1.14 !important; }
+#overview-title + p { font-size: clamp(15px, 1.2vw, 16px) !important; line-height: 1.7 !important; }
+#overview [data-nav-target] { font-size: 13px !important; line-height: 1.25 !important; }
+
+#homepage-metadata .grid > div { gap: 0.35rem; min-width: 0; }
+#homepage-metadata .grid > div > :first-child { font-size: 12px !important; line-height: 1.35 !important; }
+#homepage-metadata .grid > div > :last-child { font-size: clamp(16px, 1.45vw, 18px) !important; line-height: 1.3 !important; overflow-wrap: anywhere; }
+
+@media (min-width: 900px) {
+  header nav { position: absolute; left: 50%; transform: translateX(-50%); }
+}
+
+@media (min-width: 768px) and (max-width: 899px) {
+  header nav { margin-left: auto; gap: 1rem !important; }
+  header nav a { font-size: 13px !important; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .twinkle-slow, .twinkle-med, .twinkle-quick, .meteor-flyby {
+    animation: none !important;
+    opacity: 0.55 !important;
+    transform: none !important;
+  }
+}
+</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{"colors":{"inverse-surface":"#e4e2dc","on-secondary-container":"#fe9b88","on-secondary-fixed-variant":"#783024","outline":"#9d8e81","error":"#ffb4ab","on-error-container":"#ffdad6","secondary-fixed-dim":"#ffb4a6","secondary-container":"#783024","on-primary-container":"#412400","secondary":"#ffb4a6","on-tertiary":"#1e3241","on-error":"#690005","surface":"#131410","tertiary":"#b4c9dc","on-secondary":"#5a1b10","surface-tint":"#f6bb7e","inverse-primary":"#815522","surface-container-low":"#1b1c18","on-primary-fixed":"#2c1700","error-container":"#93000a","surface-bright":"#393935","primary":"#f6bb7e","primary-container":"#bb874f","surface-container":"#1f201c","inverse-on-surface":"#30312c","background":"#131410","on-tertiary-container":"#182c3b","on-background":"#e4e2dc","on-surface-variant":"#d5c3b5","surface-container-highest":"#353530","on-tertiary-fixed":"#071d2c","surface-container-lowest":"#0e0f0b","surface-container-high":"#2a2a26","on-primary":"#492900","primary-fixed-dim":"#f6bb7e","on-secondary-fixed":"#3d0601","tertiary-fixed-dim":"#b4c9dc","tertiary-fixed":"#d0e5f9","on-tertiary-fixed-variant":"#354959","surface-dim":"#131410","tertiary-container":"#7f94a6","secondary-fixed":"#ffdad4","on-primary-fixed-variant":"#653e0b","outline-variant":"#50453a","surface-variant":"#353530","on-surface":"#e4e2dc","primary-fixed":"#ffdcbc"},"borderRadius":{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},"spacing":{"gutter-mobile":"0.75rem","margin":"2rem","space-lg":"1.5rem","space-xs":"0.25rem","margin-mobile":"1rem","space-xl":"2.5rem","space-sm":"0.5rem","gutter":"1.5rem","space-md":"1rem"},"fontFamily":{"headline-md":["Newsreader"],"display-lg-mobile":["Newsreader"],"label-data":["JetBrains Mono"],"body-sm":["Public Sans"],"label-system":["Public Sans"],"display-lg":["Newsreader"],"headline-lg":["Newsreader"],"display-md":["Newsreader"],"body-md":["Public Sans"],"label-mono-sm":["JetBrains Mono"],"body-lg":["Public Sans"]},"fontSize":{"headline-md":["22px",{"lineHeight":"30px","letterSpacing":"0em","fontWeight":"500"}],"display-lg-mobile":["32px",{"lineHeight":"40px","letterSpacing":"-0.01em","fontWeight":"400"}],"label-data":["13px",{"lineHeight":"18px","letterSpacing":"0.04em","fontWeight":"500"}],"body-sm":["12px",{"lineHeight":"18px","letterSpacing":"0.02em","fontWeight":"400"}],"label-system":["11px",{"lineHeight":"14px","letterSpacing":"0.08em","fontWeight":"600"}],"display-lg":["48px",{"lineHeight":"56px","letterSpacing":"-0.02em","fontWeight":"400"}],"headline-lg":["28px",{"lineHeight":"36px","letterSpacing":"-0.01em","fontWeight":"400"}],"display-md":["36px",{"lineHeight":"44px","letterSpacing":"-0.015em","fontWeight":"400"}],"body-md":["14px",{"lineHeight":"22px","letterSpacing":"0.01em","fontWeight":"400"}],"label-mono-sm":["11px",{"lineHeight":"14px","letterSpacing":"0.08em","fontWeight":"400"}],"body-lg":["16px",{"lineHeight":"26px","letterSpacing":"0.01em","fontWeight":"400"}]}}}};</script></head><body class="bg-background font-body-md text-on-surface antialiased"><header class="fixed top-0 left-0 w-full z-50 bg-surface-container-lowest/90 backdrop-blur-md"><div class="h-16 max-w-7xl mx-auto px-gutter flex items-center justify-between"><div class="flex items-center gap-space-md"><div class="flex flex-col"><div class="flex items-center gap-space-xs"><span class="font-headline-md text-headline-md tracking-tight text-on-surface">PROJECT SENTINEL</span></div><div class="flex items-center gap-space-xs"><span class="w-1.5 h-1.5 rounded-full bg-primary-container inline-block animate-pulse"></span></div></div></div><nav class="hidden md:flex items-center gap-space-lg" data-active-classes="text-on-surface underline underline-offset-8 decoration-primary decoration-1 font-semibold"><a aria-current="page" class="uppercase tracking-widest transition-colors py-space-sm text-on-surface underline underline-offset-8 decoration-primary decoration-1 font-semibold" data-path="overview" href="#">Overview</a><a class="font-label-system text-label-system uppercase tracking-widest text-on-surface-variant hover:text-on-surface transition-colors py-space-sm" data-path="analyze" href="#">Analyze</a><a class="font-label-system text-label-system uppercase tracking-widest text-on-surface-variant hover:text-on-surface transition-colors py-space-sm" data-path="data-explorer" href="#">Data Explorer</a><a class="font-label-system text-label-system uppercase tracking-widest text-on-surface-variant hover:text-on-surface transition-colors py-space-sm" data-path="methodology" href="#">Methodology</a></nav><div class="flex items-center gap-space-md"><div class="hidden lg:flex items-center gap-space-xs bg-surface-container-low px-space-sm py-space-xs rounded"></div></div></div></header><main class="w-full pt-16 bg-background min-h-screen relative overflow-hidden"><div class="flex flex-col w-full">
+<!-- Global Realistic Ambient Starfield Layer (Subtle, Deep Background Astrometry) -->
+<div aria-hidden="true" class="absolute inset-0 pointer-events-none z-0 overflow-hidden" id="global-ambient-starfield">
+<div class="absolute inset-0 twinkle-slow" style="background-image: radial-gradient(1px 1px at 4% 18%, #EDEBE4 100%, transparent), radial-gradient(1.5px 1.5px at 15% 42%, #b4c9dc 100%, transparent), radial-gradient(1px 1px at 28% 12%, rgba(237,235,228,0.7) 100%, transparent), radial-gradient(2px 2px at 39% 73%, #f6bb7e 100%, transparent), radial-gradient(1px 1px at 52% 28%, #EDEBE4 100%, transparent), radial-gradient(1.5px 1.5px at 67% 61%, #d0e5f9 100%, transparent), radial-gradient(1px 1px at 82% 16%, rgba(237,235,228,0.8) 100%, transparent), radial-gradient(2px 2px at 91% 85%, #f6bb7e 100%, transparent); background-size: 800px 700px; opacity: 0.6;"></div>
+<div class="absolute inset-0 twinkle-med" style="animation-delay: -1.7s; background-image: radial-gradient(1px 1px at 8% 68%, #d0e5f9 100%, transparent), radial-gradient(2px 2px at 22% 84%, #EDEBE4 100%, transparent), radial-gradient(1.2px 1.2px at 45% 35%, #bb874f 100%, transparent), radial-gradient(1px 1px at 61% 8%, rgba(237,235,228,0.85) 100%, transparent), radial-gradient(1.5px 1.5px at 74% 48%, #b4c9dc 100%, transparent), radial-gradient(1px 1px at 88% 32%, #EDEBE4 100%, transparent); background-size: 650px 600px; opacity: 0.5;"></div>
+</div>
+<!-- SECTION 1: HERO SECTION (55 / 45 Asymmetric Split) -->
+<section aria-labelledby="overview-title" class="relative w-full min-h-[92vh] flex items-center overflow-hidden border-b border-outline-variant/30 bg-surface-container-lowest" id="overview">
+<!-- Full-bleed Background Image with Observational Atmosphere -->
+<div class="absolute inset-0 z-0 pointer-events-none select-none">
+<img alt="Earth limb and near-Earth asteroid observation" class="w-full h-full object-cover object-right md:object-center filter contrast-125" src="https://lh3.googleusercontent.com/aida/ALJJyrBNznf-drty1SA-L9tPb7W1otHdcco1NLpBmuCJgo3cc6psf_f8Ku8KXdzqRhhtR4l0duQlf-JIlUAY9gkxg3482qUV3H5HUxhVZHvHDDZu5_AwrGWUYXAO356rsatJTuK3YibQiNZTcJZz5R4_7VqKq0Tc044kRhOBm4Ri5jlN5CChtbXHtzF8ndu4XTtFkokfgWtSxpTaBtNL9bMCoM-bafT1lWjGWklCTkO2nlEj">
+<!-- Meteor positioned at the origin of the observatory light bloom -->
+<img alt="Near-Earth meteor illuminated by the observatory light" class="absolute z-[2] opacity-90 meteor-flyby drop-shadow-[0_0_30px_rgba(224,242,254,0.42)]" style="top: 22%; right: 6%; width: min(34vw, 440px);" src="meteorite-cutout.png">
+<!-- Left-to-right editorial scrim gradient ensuring sharp typography legibility -->
+<div aria-hidden="true" class="absolute inset-0 pointer-events-none select-none overflow-hidden"><div class="absolute top-[-10%] right-[-10%] w-[85vw] h-[85vw] max-w-[1100px] max-h-[1100px] rounded-full pointer-events-none" style="background: radial-gradient(circle at 68% 46%, rgba(147, 197, 253, 0.42) 0%, rgba(56, 189, 248, 0.28) 28%, rgba(14, 116, 144, 0.16) 48%, rgba(2, 132, 199, 0.06) 64%, transparent 74%); filter: blur(55px); mix-blend-mode: screen;"></div><div class="absolute top-[-5%] right-[-5%] w-[70vw] h-[70vw] max-w-[950px] max-h-[950px] rounded-full pointer-events-none" style="background: radial-gradient(circle at 64% 48%, rgba(224, 242, 254, 0.65) 0%, rgba(186, 230, 253, 0.38) 22%, rgba(56, 189, 248, 0.18) 42%, transparent 66%); filter: blur(28px); mix-blend-mode: screen;"></div><div class="absolute top-[4%] right-[2%] w-[58vw] h-[58vw] max-w-[800px] max-h-[800px] rounded-full pointer-events-none" style="background: radial-gradient(circle at 62% 50%, rgba(240, 249, 255, 0.85) 0%, rgba(199, 210, 254, 0.4) 15%, rgba(96, 165, 250, 0.15) 35%, transparent 58%); filter: blur(12px); mix-blend-mode: screen;"></div></div><div class="absolute inset-0 bg-gradient-to-r from-[#131410] via-[#131410]/85 md:via-[#131410]/75 to-transparent"></div>
+<!-- Bottom fade gradient for seamless blending into Section 2 -->
+<div class="absolute inset-0 bg-gradient-to-t from-[#131410] via-transparent to-[#131410]/40"></div>
+</div>
+<!-- Dedicated Realistic Astrometric Starfield Layer in Deep Space & Behind Scrim -->
+<div aria-hidden="true" class="absolute inset-0 z-[5] pointer-events-none overflow-hidden select-none">
+<!-- Cluster Tier 1: Micro-pinpricks (Warm Ivory & Ice-Blue) -->
+<div class="absolute inset-0 twinkle-slow" style="animation-delay: -0.8s; background-image: radial-gradient(1px 1px at 12% 15%, #EDEBE4 100%, transparent), radial-gradient(1.5px 1.5px at 24% 28%, #d0e5f9 100%, transparent), radial-gradient(1px 1px at 38% 19%, rgba(237,235,228,0.7) 100%, transparent), radial-gradient(1.5px 1.5px at 48% 62%, #EDEBE4 100%, transparent), radial-gradient(1px 1px at 58% 14%, #b4c9dc 100%, transparent), radial-gradient(1px 1px at 70% 36%, rgba(237,235,228,0.6) 100%, transparent), radial-gradient(1.5px 1.5px at 84% 18%, #f6bb7e 100%, transparent), radial-gradient(1px 1px at 94% 45%, #EDEBE4 100%, transparent); background-size: 550px 480px; opacity: 0.75;"></div>
+<!-- Cluster Tier 2: Staggered Medium Twinkle Stars with Gentle Scintillation -->
+<div class="absolute inset-0 twinkle-med" style="animation-delay: -2.4s; background-image: radial-gradient(1.5px 1.5px at 7% 42%, #d0e5f9 100%, transparent), radial-gradient(2px 2px at 19% 76%, #EDEBE4 100%, transparent), radial-gradient(1px 1px at 33% 54%, rgba(237,235,228,0.9) 100%, transparent), radial-gradient(1.8px 1.8px at 53% 82%, #bb874f 100%, transparent), radial-gradient(1.5px 1.5px at 64% 22%, #EDEBE4 100%, transparent), radial-gradient(1px 1px at 78% 70%, #d0e5f9 100%, transparent), radial-gradient(2px 2px at 89% 12%, #f6bb7e 100%, transparent); background-size: 680px 560px; opacity: 0.7;"></div>
+<!-- Cluster Tier 3: Soft Glowing Anchored Primary Stars (Observatory Standard Pinprick Halos) -->
+<div class="absolute top-[14%] left-[34%] w-[2.5px] h-[2.5px] rounded-full bg-[#EDEBE4] shadow-[0_0_4px_rgba(237,235,228,0.9),0_0_8px_rgba(180,201,220,0.6)] twinkle-slow"></div>
+<div class="absolute top-[26%] left-[49%] w-[2px] h-[2px] rounded-full bg-[#f6bb7e] shadow-[0_0_3px_rgba(246,187,126,0.9),0_0_7px_rgba(187,135,79,0.5)] twinkle-med" style="animation-delay: -1.2s;"></div>
+<div class="absolute top-[8%] left-[62%] w-[2px] h-[2px] rounded-full bg-[#d0e5f9] shadow-[0_0_3px_rgba(208,229,249,0.9),0_0_8px_rgba(180,201,220,0.5)] twinkle-quick" style="animation-delay: -3.1s;"></div>
+<div class="absolute top-[38%] left-[73%] w-[2px] h-[2px] rounded-full bg-[#EDEBE4] shadow-[0_0_3px_rgba(237,235,228,0.8),0_0_6px_rgba(237,235,228,0.4)] twinkle-slow" style="animation-delay: -2.1s;"></div>
+<div class="absolute top-[22%] right-[18%] w-[2.5px] h-[2.5px] rounded-full bg-[#EDEBE4] shadow-[0_0_4px_rgba(237,235,228,0.9),0_0_9px_rgba(246,187,126,0.45)] twinkle-med" style="animation-delay: -0.4s;"></div>
+<div class="absolute top-[68%] right-[28%] w-[1.5px] h-[1.5px] rounded-full bg-[#d0e5f9] shadow-[0_0_3px_rgba(208,229,249,0.8)] twinkle-slow" style="animation-delay: -4.0s;"></div>
+<div class="absolute top-[82%] left-[41%] w-[2px] h-[2px] rounded-full bg-[#EDEBE4] shadow-[0_0_3px_rgba(237,235,228,0.85)] twinkle-quick" style="animation-delay: -1.8s;"></div>
+<div class="absolute top-[18%] left-[16%] w-[1.8px] h-[1.8px] rounded-full bg-[#f6bb7e] shadow-[0_0_3px_rgba(246,187,126,0.8),0_0_6px_rgba(187,135,79,0.4)] twinkle-slow" style="animation-delay: -3.5s;"></div>
+</div>
+<!-- Subtle Astrometric Instrument Reticle Overlays -->
+<div class="absolute inset-0 z-10 pointer-events-none opacity-40">
+<div class="absolute top-6 left-6 font-label-mono-sm text-label-mono-sm text-primary select-none">+</div>
+<div class="absolute top-6 right-6 font-label-mono-sm text-label-mono-sm text-primary select-none">+</div>
+<div class="absolute bottom-8 left-6 font-label-mono-sm text-label-mono-sm text-primary select-none">+</div>
+<div class="absolute bottom-8 right-6 font-label-mono-sm text-label-mono-sm text-primary select-none">+</div>
+<svg class="absolute right-[12%] top-[30%] w-72 h-72 hidden md:block opacity-60" xmlns="http://www.w3.org/2000/svg">
+<circle cx="50%" cy="50%" fill="none" r="110" stroke="#bb874f" stroke-dasharray="2 4" stroke-width="1"></circle>
+<circle cx="50%" cy="50%" fill="#f6bb7e" r="4"></circle>
+<line stroke="#50453a" stroke-dasharray="3 3" x1="50%" x2="50%" y1="10%" y2="90%"></line>
+<line stroke="#50453a" stroke-dasharray="3 3" x1="10%" x2="90%" y1="50%" y2="50%"></line>
+</svg>
+</div>
+<!-- Hero Foreground Content Container -->
+<div class="relative z-20 w-full max-w-7xl mx-auto px-gutter py-space-xl flex flex-col justify-center min-h-[92vh]">
+<div class="max-w-3xl flex flex-col space-y-space-md pt-space-lg">
+<!-- Technical Classification Badge -->
+<div class="flex items-center gap-space-xs">
+<span class="inline-block w-1.5 h-1.5 bg-primary-container"></span>
+<span class="font-label-system text-label-system text-primary-container uppercase tracking-widest">OBSERVATORY TELEMETRY GRID // LEVEL 1 INGEST</span>
+</div>
+<!-- Monumental Editorial Headline -->
+<h1 class="font-display-lg text-display-lg text-on-surface leading-tight tracking-tight drop-shadow-sm" id="overview-title">
+        Understanding what approaches Earth.
+      </h1>
+<!-- Narrative Description -->
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl leading-relaxed">
+        PROJECT SENTINEL provides local access to a reviewed historical hazardous-label classifier and its supplied NEO catalogue. No live survey feed, impact forecast, or unverified model metric is shown.
+      </p>
+<!-- CTAs -->
+<div class="flex flex-wrap items-center gap-space-md pt-space-xs">
+<button class="bg-primary-container hover:bg-primary text-on-primary-container font-label-data text-label-data px-space-lg py-space-sm uppercase tracking-wider transition-colors shadow-sm cursor-pointer" data-nav-target="analyze" type="button">
+          Analyze an Asteroid
+        </button>
+<button class="bg-surface-container/90 hover:bg-surface-container-high text-on-surface font-label-data text-label-data px-space-lg py-space-sm uppercase tracking-wider transition-colors border border-outline-variant/40 backdrop-blur-sm cursor-pointer" data-nav-target="data-explorer" type="button">
+          Explore Dataset
+        </button>
+</div>
+<!-- Telemetry Data Strip with Translucent Backdrop -->
+<div class="pt-space-md mt-space-sm bg-surface-container-lowest/80 border border-outline-variant/30 p-space-md backdrop-blur-md shadow-lg max-w-2xl" id="homepage-metadata">
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-space-md">
+<div class="flex flex-col">
+<span class="font-label-system text-label-system text-outline uppercase tracking-wider">Model features</span>
+<span class="font-label-data text-label-data text-on-surface text-lg font-mono" id="modelFeatureCount">UNAVAILABLE</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-system text-label-system text-outline uppercase tracking-wider">Dataset rows supplied</span>
+<span class="font-label-data text-label-data text-secondary text-lg font-mono">90,836</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-system text-label-system text-outline uppercase tracking-wider">API / model status</span>
+<span class="font-label-data text-label-data text-tertiary text-lg font-mono" id="apiModelStatus">CHECKING</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-system text-label-system text-outline uppercase tracking-wider">Model version</span>
+<span class="font-label-data text-label-data text-primary text-lg font-mono" id="modelVersion">UNAVAILABLE</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Orbit Micro-Card Telemetry Bar Floating in Hero -->
+<div class="mt-space-lg flex flex-wrap items-center justify-between gap-space-sm bg-surface-container-low/70 border border-outline-variant/30 px-space-md py-space-xs backdrop-blur-md max-w-3xl">
+<div class="flex items-center gap-space-xs">
+<span class="font-label-system text-label-system text-outline uppercase">DATASET:</span>
+<span class="font-label-data text-label-data text-primary font-bold">neo (3).csv</span>
+</div>
+<div class="flex items-center gap-space-xs">
+<span class="font-label-system text-label-system text-outline uppercase">TASK:</span>
+<span class="font-label-data text-label-data text-on-surface">Historical hazard label</span>
+</div>
+<div class="flex items-center gap-space-xs">
+<span class="font-label-system text-label-system text-outline uppercase">LIVE FEED:</span>
+<span class="font-label-data text-label-data text-secondary">UNAVAILABLE</span>
+</div>
+<div class="flex items-center gap-space-xs">
+<span class="font-label-mono-sm text-label-mono-sm text-primary tracking-widest font-mono">LOCAL DEVELOPMENT DATA</span>
+</div>
+</div>
+</div>
+</section>
+<!-- SENTINEL STORY: EDITORIAL CONTEXT FOR THE REVIEWED CLASSIFIER -->
+<section aria-labelledby="sentinel-story-title" class="relative z-10 w-full max-w-7xl mx-auto px-gutter py-space-xl">
+<div class="border-y border-outline-variant/30 py-[clamp(2.5rem,6vw,4.25rem)]">
+<header class="max-w-5xl">
+<p class="font-label-mono-sm text-label-mono-sm text-primary uppercase tracking-widest">The story / Project Sentinel</p>
+<h2 class="font-display-lg text-[clamp(2.15rem,4vw,3.55rem)] leading-[1.08] text-on-surface tracking-tight mt-space-sm" id="sentinel-story-title">Not every asteroid is a threat. But every observation tells a story.</h2>
+<p class="font-body-lg text-[16px] md:text-[17px] text-on-surface-variant leading-[1.65] mt-space-md max-w-3xl">A small experiment in finding meaningful patterns within thousands of historical near-Earth-object observations.</p>
+</header>
+
+<div class="border-t border-outline-variant/30 mt-[clamp(2rem,4.5vw,3.5rem)]"></div>
+
+<article class="grid grid-cols-1 lg:grid-cols-12 gap-x-[clamp(2.5rem,5vw,5rem)] gap-y-space-md py-[clamp(2.5rem,5vw,4.25rem)]">
+<figure class="lg:col-span-5 lg:pl-space-sm self-center">
+<img src="meteorite-cutout.png" alt="Monochrome close view of a rocky asteroid from Sentinel's local visual reference" class="w-full h-auto max-w-[34rem] object-contain" loading="lazy">
+</figure>
+<div class="lg:col-span-5 lg:col-start-7 self-center max-w-xl">
+<p class="font-label-data text-[28px] md:text-[38px] text-primary tracking-wide leading-none">01 / THE QUESTION</p>
+<h3 class="font-headline-md text-[24px] md:text-[28px] leading-[1.16] text-on-surface tracking-tight mt-space-sm">Which objects deserve a closer look?</h3>
+<p class="font-body-lg text-[16px] md:text-[17px] text-on-surface-variant leading-[1.65] mt-space-md max-w-lg">Astronomers monitor thousands of near-Earth objects because each observation can refine what is known. The question is not whether one measurement proves danger, but which records merit closer examination.</p>
+</div>
+</article>
+
+<article class="grid grid-cols-1 lg:grid-cols-12 gap-x-[clamp(2.5rem,5vw,5rem)] gap-y-space-sm border-t border-outline-variant/30 py-[clamp(2.25rem,4.5vw,3.5rem)]">
+<div class="lg:col-span-4">
+<p class="font-label-data text-label-data text-primary tracking-widest">02 / THE EXPERIMENT</p>
+</div>
+<div class="lg:col-span-7 lg:col-start-6 max-w-3xl">
+<h3 class="font-headline-md text-[28px] md:text-[32px] leading-[1.16] text-on-surface tracking-tight">90,836 observations. Three measurements. One question.</h3>
+<p class="font-body-lg text-[16px] md:text-[17px] lg:text-[18px] text-on-surface-variant leading-[1.65] mt-space-md">Sentinel learns from historical observations using absolute magnitude, relative velocity, and miss distance. It looks for patterns associated with the dataset's historical hazardous label.</p>
+</div>
+</article>
+
+<article class="grid grid-cols-1 lg:grid-cols-12 gap-x-[clamp(2.5rem,5vw,5rem)] gap-y-space-sm border-t border-outline-variant/30 py-[clamp(2.25rem,4.5vw,3.5rem)]">
+<div class="lg:col-span-7 max-w-3xl">
+<p class="font-label-data text-label-data text-primary tracking-widest">03 / THE LIMITATION</p>
+<h3 class="font-headline-md text-[28px] md:text-[32px] leading-[1.16] text-on-surface tracking-tight mt-space-sm">Finding patterns is not the same as predicting impact.</h3>
+<p class="font-body-lg text-[16px] md:text-[17px] lg:text-[18px] text-on-surface-variant leading-[1.65] mt-space-md">This three-feature classifier cannot calculate impact probability. Missing orbital parameters, including MOID, limit its use; its recall-oriented approach can also create false positives.</p>
+</div>
+</article>
+
+<article class="grid grid-cols-1 lg:grid-cols-12 gap-x-[clamp(2.5rem,5vw,5rem)] gap-y-space-sm border-y border-outline-variant/30 py-[clamp(2.25rem,4.5vw,3.5rem)]">
+<div class="lg:col-span-4 lg:col-start-2">
+<p class="font-label-data text-label-data text-primary tracking-widest">04 / THE FUTURE</p>
+</div>
+<div class="lg:col-span-6 lg:col-start-6 max-w-2xl">
+<h3 class="font-headline-md text-[28px] md:text-[32px] leading-[1.16] text-on-surface tracking-tight">A starting point, not a finished scientific instrument.</h3>
+<p class="font-body-lg text-[16px] md:text-[17px] lg:text-[18px] text-on-surface-variant leading-[1.65] mt-space-md">Richer orbital data, explainable AI, improved independent validation, and current measurements with explicit provenance could strengthen future versions.</p>
+<a href="#analyze" class="inline-flex items-center gap-space-xs font-label-system text-label-system text-primary uppercase tracking-widest mt-space-lg border-b border-primary/60 pb-1 hover:text-on-surface focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary">Explore the classifier <span aria-hidden="true">↓</span></a>
+</div>
+</article>
+</div>
+</section>
+<!-- ANALYZE: BACKEND-READY FORM, NO CLIENT-SIDE CLASSIFICATION -->
+<section aria-labelledby="analyze-title" class="relative z-10 w-full max-w-7xl mx-auto px-gutter py-space-xl" id="analyze">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg bg-surface-container-low border border-outline-variant/30 p-space-lg">
+<div class="lg:col-span-3">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface tracking-tight" id="analyze-title">Analyze an asteroid</h2>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">Enter the three observations used by the reviewed model. It predicts a historical hazardous designation, not a collision or impact probability.</p>
+</div>
+</div>
+<form class="lg:col-span-9 grid grid-cols-1 md:grid-cols-3 gap-space-md" id="analyzeForm" novalidate>
+<label class="flex flex-col gap-space-xs font-label-system text-label-system text-outline uppercase tracking-wider">Absolute magnitude (H) <span class="normal-case text-primary">mag</span><input autocomplete="off" class="bg-surface-container-lowest border border-outline-variant/50 text-on-surface p-space-sm font-label-data normal-case tracking-normal focus:outline-none focus:border-primary" inputmode="decimal" name="absolute_magnitude" placeholder="e.g. 22.0" required type="number" step="any"></label>
+<label class="flex flex-col gap-space-xs font-label-system text-label-system text-outline uppercase tracking-wider">Relative velocity <span class="normal-case text-primary">km/h</span><input autocomplete="off" class="bg-surface-container-lowest border border-outline-variant/50 text-on-surface p-space-sm font-label-data normal-case tracking-normal focus:outline-none focus:border-primary" inputmode="decimal" name="relative_velocity" placeholder="e.g. 13569.25" required type="number" step="any"></label>
+<label class="flex flex-col gap-space-xs font-label-system text-label-system text-outline uppercase tracking-wider">Miss distance <span class="normal-case text-primary">km</span><input autocomplete="off" class="bg-surface-container-lowest border border-outline-variant/50 text-on-surface p-space-sm font-label-data normal-case tracking-normal focus:outline-none focus:border-primary" inputmode="decimal" name="miss_distance" placeholder="e.g. 54839744.08" required type="number" step="any"></label>
+<div class="md:col-span-3 flex flex-col sm:flex-row sm:items-center gap-space-md pt-space-xs">
+<button class="bg-primary-container hover:bg-primary text-on-primary-container font-label-data text-label-data px-space-lg py-space-sm uppercase tracking-wider transition-colors" id="predictButton" type="submit">Predict designation</button>
+<output aria-live="polite" class="font-body-sm text-body-sm text-on-surface-variant" id="analyzeStatus">Checking the reviewed model service.</output>
+</div>
+</form>
+</div>
+</section>
+<!-- SECTION 3: MEASURED SCIENTIFIC DATA PREVIEW -->
+<section aria-labelledby="explorer-title" class="relative z-10 w-full max-w-7xl mx-auto px-gutter py-space-xl" id="data-explorer">
+<div class="mb-space-md">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface tracking-tight" id="explorer-title">
+          Dataset Explorer
+        </h2>
+</div>
+</div>
+<!-- Data Matrix Viewport -->
+<div class="bg-surface-container overflow-x-auto shadow-lg border border-outline-variant/30">
+<table class="w-full text-left whitespace-nowrap">
+<thead>
+<tr class="bg-surface-container-low border-b border-outline-variant/30">
+<th class="py-space-sm px-space-md font-label-system text-label-system text-outline uppercase tracking-wider">Object name</th>
+<th class="py-space-sm px-space-md font-label-system text-label-system text-outline uppercase tracking-wider font-mono">Absolute magnitude</th>
+<th class="py-space-sm px-space-md font-label-system text-label-system text-outline uppercase tracking-wider font-mono">Diameter range</th>
+<th class="py-space-sm px-space-md font-label-system text-label-system text-outline uppercase tracking-wider font-mono">Relative velocity</th>
+<th class="py-space-sm px-space-md font-label-system text-label-system text-outline uppercase tracking-wider font-mono">Miss distance</th>
+<th class="py-space-sm px-space-md font-label-system text-label-system text-outline uppercase tracking-wider">Hazard label</th>
+<th class="py-space-sm px-space-md font-label-system text-label-system text-outline uppercase tracking-wider text-right font-mono">Source status</th>
+</tr>
+</thead>
+<tbody class="divide-y-0" id="matrixRows">
+<!-- Row 1: Apophis -->
+<tr class="hover:bg-surface-container-high transition-colors bg-surface-container" data-group="pha aten">
+<td class="py-space-sm px-space-md">
+<div class="flex flex-col">
+<span class="font-label-data text-label-data text-on-surface font-semibold">(99942) Apophis</span>
+<span class="font-label-mono-sm text-label-mono-sm text-outline">MPC #2004 MN4 // Aten</span>
+</div>
+</td>
+<td class="py-space-sm px-space-md font-label-data text-label-data text-on-surface font-mono">0.922 AU</td>
+<td class="py-space-sm px-space-md font-label-data text-label-data text-secondary font-mono font-medium">0.00026 AU</td>
+<td class="py-space-sm px-space-md font-label-data text-label-data text-on-surface font-mono">30.73 km/s</td>
+<td class="py-space-sm px-space-md font-label-data text-label-data text-on-surface-variant font-mono">370 m</td>
+<td class="py-space-sm px-space-md">
+<span class="inline-flex items-center gap-1 font-label-mono-sm text-label-mono-sm bg-secondary-container/30 text-secondary px-space-xs py-0.5 rounded">
+<span class="">[!]</span> Potentially Hazardous
+              </span>
+</td>
+<td class="py-space-sm px-space-md font-label-data text-label-data text-primary text-right font-mono font-bold">
+              99.4%
+            </td>
+</tr>
+<!-- Row 2: Bennu -->
+<tr class="hover:bg-surface-container-high transition-colors bg-surface-container-low" data-group="pha apollo">
+<td class="py-space-sm px-space-md">
+<div class="flex flex-col">
+<span class="font-label-data text-label-data text-on-surface font-semibold">(101955) Bennu</span>
+<span class="font-label-mono-sm text-label-mono-sm text-outline">MPC #1999 RQ36 // Apollo</span>
+</div>
+</td>
+<td class="py-space-sm px-space-md font-label-data text-label-data text-on-surface font-mono">1.126 AU</td>
+<td class="py-space-sm px-space-md font-label-data text-label-data text-secondary font-mono font-medium">0.00321 AU</td>
+<td class="py-space-sm px-space-md font-label-data text-label-data text-on-surface font-mono">27.91 km/s</td>
+<td class="py-space-sm px-space-md font-label-data text-label-data text-on-surface-variant font-mono">490 m</td>
+<td class="py-space-sm px-space-md">
+<span class="inline-flex items-center gap-1 font-label-mono-sm text-label-mono-sm bg-secondary-container/30 text-secondary px-space-xs py-0.5 rounded">
+<span class="">[!]</span> Potentially Hazardous
+              </span>
+</td>
+<td class="py-space-sm px-space-md font-label-data text-label-data text-primary text-right font-mono font-bold">
+              98.7%
+            </td>
+</tr>
+<!-- Row 3: 2024 YR4 -->
+<tr class="hover:bg-surface-container-high transition-colors bg-surface-container" data-group="amor">
+<td class="py-space-sm px-space-md">
+<div class="flex flex-col">
+<span class="font-label-data text-label-data text-on-surface font-semibold">2024 YR4</span>
+<span class="font-label-mono-sm text-label-mono-sm text-outline">MPC #K24Y04R // Amor Candidate</span>
+</div>
+</td>
+<td class="py-space-sm px-space-md font-label-data text-label-data text-on-surface font-mono">1.341 AU</td>
+<td class="py-space-sm px-space-md font-label-data text-label-data text-primary font-mono font-medium">0.00840 AU</td>
+<td class="py-space-sm px-space-md font-label-data text-label-data text-on-surface font-mono">18.42 km/s</td>
+<td class="py-space-sm px-space-md font-label-data text-label-data text-on-surface-variant font-mono">~65 m</td>
+<td class="py-space-sm px-space-md">
+<span class="inline-flex items-center gap-1 font-label-mono-sm text-label-mono-sm bg-primary-container/20 text-primary px-space-xs py-0.5 rounded">
+<span class="">●</span> Monitored (Amor)
+              </span>
+</td>
+<td class="py-space-sm px-space-md font-label-data text-label-data text-primary text-right font-mono font-bold">
+              96.1%
+            </td>
+</tr>
+<!-- Row 4: 433 Eros -->
+<tr class="hover:bg-surface-container-high transition-colors bg-surface-container-low" data-group="amor">
+<td class="py-space-sm px-space-md">
+<div class="flex flex-col">
+<span class="font-label-data text-label-data text-on-surface font-semibold">(433) Eros</span>
+<span class="font-label-mono-sm text-label-mono-sm text-outline">MPC #1898 DQ // Amor Benchmark</span>
+</div>
+</td>
+<td class="py-space-sm px-space-md font-label-data text-label-data text-on-surface font-mono">1.458 AU</td>
+<td class="py-space-sm px-space-md font-label-data text-label-data text-tertiary font-mono">0.14920 AU</td>
+<td class="py-space-sm px-space-md font-label-data text-label-data text-on-surface font-mono">24.30 km/s</td>
+<td class="py-space-sm px-space-md font-label-data text-label-data text-on-surface-variant font-mono">16.8 km</td>
+<td class="py-space-sm px-space-md">
+<span class="inline-flex items-center gap-1 font-label-mono-sm text-label-mono-sm bg-tertiary-container/20 text-tertiary px-space-xs py-0.5 rounded">
+<span class="">○</span> Non-Hazardous
+              </span>
+</td>
+<td class="py-space-sm px-space-md font-label-data text-label-data text-on-surface-variant text-right font-mono">
+              &gt;99.9%
+            </td>
+</tr>
+<!-- Row 5: 1998 QE2 -->
+<tr class="hover:bg-surface-container-high transition-colors bg-surface-container" data-group="apollo">
+<td class="py-space-sm px-space-md">
+<div class="flex flex-col">
+<span class="font-label-data text-label-data text-on-surface font-semibold">(285263) 1998 QE2</span>
+<span class="font-label-mono-sm text-label-mono-sm text-outline">MPC #1998 QE2 // Binary System</span>
+</div>
+</td>
+<td class="py-space-sm px-space-md font-label-data text-label-data text-on-surface font-mono">2.421 AU</td>
+<td class="py-space-sm px-space-md font-label-data text-label-data text-tertiary font-mono">0.03810 AU</td>
+<td class="py-space-sm px-space-md font-label-data text-label-data text-on-surface font-mono">10.58 km/s</td>
+<td class="py-space-sm px-space-md font-label-data text-label-data text-on-surface-variant font-mono">2.75 km</td>
+<td class="py-space-sm px-space-md">
+<span class="inline-flex items-center gap-1 font-label-mono-sm text-label-mono-sm bg-primary-container/20 text-primary px-space-xs py-0.5 rounded">
+<span class="">●</span> Monitored (Apollo)
+              </span>
+</td>
+<td class="py-space-sm px-space-md font-label-data text-label-data text-primary text-right font-mono font-bold">
+              97.8%
+            </td>
+</tr>
+</tbody>
+</table>
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm border-t border-outline-variant/30 bg-surface-container-low p-space-md">
+<p aria-live="polite" class="font-body-sm text-body-sm text-on-surface-variant" id="catalogStatus">DEMO DATA is shown until a backend catalogue is requested.</p>
+<button class="border border-primary-container/70 text-primary hover:bg-primary-container hover:text-on-primary-container font-label-data text-label-data px-space-md py-space-xs uppercase tracking-wider transition-colors" id="loadCatalog" type="button">Request API records</button>
+</div>
+<!-- Table Footer Actions -->
+</div>
+</section>
+<!-- SECTION 4: METHODOLOGY & ARCHITECTURE -->
+<section aria-labelledby="methodology-title" class="relative z-10 w-full max-w-7xl mx-auto px-gutter pt-space-md pb-space-xl" id="methodology">
+<div class="mb-space-lg">
+<div class="flex items-center gap-space-xs">
+</div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface tracking-tight" id="methodology-title">
+        Integration Methodology
+      </h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-3xl">
+        Local integration boundary for the reviewed classifier. Its exact saved feature contract, units, threshold, and limitations are exposed by <span class="font-mono text-tertiary">/api/model-info</span>; no unverified evaluation metric is displayed.
+      </p>
+</div>
+<!-- 3 Clean Column Panels with Tonal Stacking -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-lg">
+<!-- Panel 01 -->
+<div class="bg-surface-container-low p-space-lg flex flex-col justify-between relative shadow-md border border-outline-variant/30">
+<div class="flex flex-col space-y-space-sm">
+<h3 class="font-headline-md text-headline-md text-on-surface tracking-tight">
+            Feature Extraction
+          </h3>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+            The supplied development dataset currently includes name, absolute magnitude, estimated diameter range, relative velocity, miss distance, orbiting body, sentry flag, and a hazard label. Orbital-element features require a confirmed source.
+          </p>
+</div>
+</div>
+<!-- Panel 02 -->
+<div class="bg-surface-container p-space-lg flex flex-col justify-between relative shadow-md border border-outline-variant/30">
+<div class="flex flex-col space-y-space-sm">
+<h3 class="font-headline-md text-headline-md text-on-surface tracking-tight">
+            Ensemble Classifier
+          </h3>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+            The deployed artifact is a HistGradientBoostingClassifier with three saved input features. The metadata does not contain verified evaluation metrics or calibration evidence, so neither is claimed here. The output is a hazardous designation, not an impact forecast.
+          </p>
+</div>
+</div>
+<!-- Panel 03 -->
+<div class="bg-surface-container-high p-space-lg flex flex-col justify-between relative shadow-md border border-outline-variant/30">
+<div class="flex flex-col space-y-space-sm">
+<h3 class="font-headline-md text-headline-md text-on-surface tracking-tight">
+            Uncertainty Quantification
+          </h3>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+            This interface will display only backend-provided validation and result information. It does not estimate collision or impact probabilities and must not infer uncertainty without a verified model contract.
+          </p>
+</div>
+</div>
+</div>
+</section>
+<script src="sentinel-api.js"></script>
+<!-- Progressive enhancement for navigation and future API states -->
+<script>
+  (function initSentinelFrontend() {
+    const navTargets = {
+      overview: 'overview',
+      analyze: 'analyze',
+      'data-explorer': 'data-explorer',
+      methodology: 'methodology',
+    };
+    const matrixRows = document.getElementById('matrixRows');
+    const catalogStatus = document.getElementById('catalogStatus');
+    const loadCatalog = document.getElementById('loadCatalog');
+    const analyzeForm = document.getElementById('analyzeForm');
+    const analyzeStatus = document.getElementById('analyzeStatus');
+    const predictButton = document.getElementById('predictButton');
+    const modelStatusLabel = document.getElementById('modelStatusLabel');
+    const modelStatusDetail = document.getElementById('modelStatusDetail');
+    const modelFeatureCount = document.getElementById('modelFeatureCount');
+    const apiModelStatus = document.getElementById('apiModelStatus');
+    const modelVersion = document.getElementById('modelVersion');
+    let modelInfo = null;
+
+    function setHomepageMetadata({ featureCount = 'UNAVAILABLE', status = 'UNAVAILABLE', version = 'UNAVAILABLE' } = {}) {
+      if (modelFeatureCount) modelFeatureCount.textContent = featureCount;
+      if (apiModelStatus) apiModelStatus.textContent = status;
+      if (modelVersion) modelVersion.textContent = version;
+    }
+
+    function updateFooter() {
+      const footerDescription = document.querySelector('footer .md\\:col-span-5 p');
+      if (footerDescription) {
+        footerDescription.textContent = 'Frontend prototype for a future near-Earth-object data workflow. No live MPC, CNEOS, radar, or survey feed is connected.';
+      }
+      const footerColumns = document.querySelectorAll('footer [class*="md:col-span"]');
+      if (footerColumns[1]) {
+        footerColumns[1].innerHTML = '<span class="font-label-system text-label-system uppercase tracking-widest text-outline">Development dataset</span><div class="font-label-mono-sm text-label-mono-sm text-tertiary flex flex-col gap-1"><span>neo (3).csv // supplied local records</span><span>READ ONLY VIA /api/asteroids</span></div>';
+      }
+      if (footerColumns[2]) {
+        footerColumns[2].innerHTML = '<span class="font-label-system text-label-system uppercase tracking-widest text-outline">Backend contract</span><div class="font-label-mono-sm text-label-mono-sm text-on-surface-variant flex flex-col gap-1"><span>GET /api/model-info</span><span>POST /api/predict</span><span>GET /api/asteroids</span></div>';
+      }
+      const protocolNote = document.querySelector('footer .pt-space-md p');
+      if (protocolNote) {
+        protocolNote.textContent = 'DEMO DATA POLICY: The current frontend contains no verified model output, live telemetry, collision assessment, or impact-probability prediction. Display only backend-validated records when the API is connected.';
+      }
+    }
+    window.addEventListener('DOMContentLoaded', updateFooter, { once: true });
+
+    function setModelStatus(label, detail, tone) {
+      if (!modelStatusLabel || !modelStatusDetail) return;
+      modelStatusLabel.textContent = label;
+      modelStatusLabel.className = `font-label-mono-sm text-label-mono-sm ${tone || 'text-primary'} leading-relaxed`;
+      modelStatusDetail.textContent = detail;
+    }
+
+    async function loadModelInfo() {
+      predictButton.disabled = true;
+      predictButton.classList.add('opacity-60', 'cursor-wait');
+      setHomepageMetadata({ featureCount: 'CHECKING', status: 'CHECKING', version: 'CHECKING' });
+      try {
+        const info = await window.SentinelApi.getModelInfo();
+        const required = ['absolute_magnitude', 'relative_velocity', 'miss_distance'];
+        if (!info.ready || JSON.stringify(info.required_features) !== JSON.stringify(required)) {
+          throw new Error('The API model schema does not match this reviewed three-feature form.');
+        }
+        modelInfo = info;
+        setHomepageMetadata({
+          featureCount: `${info.required_features.length} FEATURES`,
+          status: 'READY',
+          version: `v${info.model_version}`,
+        });
+        setModelStatus(
+          `MODEL READY: ${info.algorithm} // v${info.model_version}`,
+          `Required inputs: absolute magnitude (mag), relative velocity (km/h), miss distance (km). ${info.limitation}`,
+          'text-primary'
+        );
+        analyzeStatus.textContent = 'Ready for a local model designation request.';
+        predictButton.disabled = false;
+        predictButton.classList.remove('opacity-60', 'cursor-wait');
+      } catch (error) {
+        modelInfo = null;
+        setHomepageMetadata();
+        setModelStatus('MODEL UNAVAILABLE', `${error.message} Predictions remain disabled.`, 'text-secondary');
+        analyzeStatus.textContent = 'The service is unavailable. No prediction was made.';
+        analyzeStatus.className = 'font-body-sm text-body-sm text-secondary';
+        predictButton.classList.remove('cursor-wait');
+      }
+    }
+
+    function navigate(target) {
+      const section = document.getElementById(navTargets[target]);
+      if (!section) return;
+      section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      window.history.replaceState(null, '', `#${target}`);
+      document.querySelectorAll('nav [data-path]').forEach((link) => {
+        const active = link.dataset.path === target;
+        link.toggleAttribute('aria-current', active);
+        link.classList.toggle('underline', active);
+      });
+    }
+
+    document.querySelectorAll('nav [data-path], [data-nav-target]').forEach((control) => {
+      control.addEventListener('click', (event) => {
+        event.preventDefault();
+        navigate(control.dataset.path || control.dataset.navTarget);
+      });
+    });
+
+    function setCatalogStatus(message, tone) {
+      catalogStatus.textContent = message;
+      catalogStatus.className = `font-body-sm text-body-sm ${tone || 'text-on-surface-variant'}`;
+    }
+
+    function createCell(value, className) {
+      const cell = document.createElement('td');
+      cell.className = `py-space-sm px-space-md font-label-data text-label-data font-mono ${className || 'text-on-surface'}`;
+      cell.textContent = value == null || value === '' ? '—' : String(value);
+      return cell;
+    }
+
+    function renderCatalog(records, total) {
+      matrixRows.replaceChildren();
+      if (!Array.isArray(records) || records.length === 0) {
+        setCatalogStatus('No records were returned by the API.', 'text-outline');
+        return;
+      }
+      records.slice(0, 25).forEach((record) => {
+        const row = document.createElement('tr');
+        row.className = 'hover:bg-surface-container-high transition-colors bg-surface-container';
+        row.append(
+          createCell(record.name || record.designation || record.id, 'text-on-surface font-semibold'),
+          createCell(record.absolute_magnitude),
+          createCell(record.est_diameter_min != null || record.est_diameter_max != null ? `${record.est_diameter_min ?? '—'} – ${record.est_diameter_max ?? '—'}` : '—'),
+          createCell(record.relative_velocity),
+          createCell(record.miss_distance),
+          createCell(record.hazardous == null ? '—' : String(record.hazardous), 'text-secondary'),
+          createCell('API record', 'text-tertiary text-right')
+        );
+        matrixRows.append(row);
+      });
+      const totalNote = Number.isInteger(total) ? ` of ${total.toLocaleString()} matching records` : '';
+      setCatalogStatus(`${Math.min(records.length, 25)} API records loaded${totalNote}. Values are displayed exactly as supplied by the backend.`, 'text-tertiary');
+    }
+
+    // Remove the original mock rows from the active UI. They remain marked as DEMO DATA in source until a backend is connected.
+    matrixRows.replaceChildren();
+    setCatalogStatus('No catalogue records loaded. Use “Request API records” after the FastAPI service is available.', 'text-outline');
+
+    loadCatalog.addEventListener('click', async () => {
+      loadCatalog.disabled = true;
+      loadCatalog.classList.add('opacity-60', 'cursor-wait');
+      setCatalogStatus('Loading records from /api/asteroids…', 'text-tertiary');
+      try {
+        const payload = await window.SentinelApi.listAsteroids({ limit: '25' });
+        renderCatalog(Array.isArray(payload) ? payload : payload.items || payload.records || [], payload.total);
+      } catch (error) {
+        matrixRows.replaceChildren();
+        setCatalogStatus(`${error.message} No demo records were substituted.`, 'text-secondary');
+      } finally {
+        loadCatalog.disabled = false;
+        loadCatalog.classList.remove('opacity-60', 'cursor-wait');
+      }
+    });
+
+    analyzeForm.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      if (!modelInfo) {
+        analyzeStatus.textContent = 'The verified model service is unavailable. No prediction was made.';
+        analyzeStatus.className = 'font-body-sm text-body-sm text-secondary';
+        return;
+      }
+      const formData = new FormData(analyzeForm);
+      const payload = {
+        absolute_magnitude: Number(formData.get('absolute_magnitude')),
+        relative_velocity: Number(formData.get('relative_velocity')),
+        miss_distance: Number(formData.get('miss_distance')),
+      };
+      if (!Number.isFinite(payload.absolute_magnitude) || !Number.isFinite(payload.relative_velocity) || !Number.isFinite(payload.miss_distance) || payload.relative_velocity < 0 || payload.miss_distance < 0) {
+        analyzeStatus.textContent = 'Enter finite values; relative velocity and miss distance cannot be negative.';
+        analyzeStatus.className = 'font-body-sm text-body-sm text-secondary';
+        return;
+      }
+      predictButton.disabled = true;
+      predictButton.classList.add('opacity-60', 'cursor-wait');
+      analyzeStatus.textContent = 'Requesting a model designation…';
+      analyzeStatus.className = 'font-body-sm text-body-sm text-tertiary';
+      try {
+        const result = await window.SentinelApi.predict(payload);
+        analyzeStatus.textContent = `${result.classification}. Model class score: ${result.model_score.toFixed(4)}; threshold: ${result.threshold}. Model v${result.model_version}. ${result.score_interpretation} ${result.limitation}`;
+        analyzeStatus.className = `font-body-sm text-body-sm ${result.predicted_hazardous ? 'text-primary' : 'text-on-surface-variant'}`;
+      } catch (error) {
+        analyzeStatus.textContent = `${error.message} No prediction was made.`;
+        analyzeStatus.className = 'font-body-sm text-body-sm text-secondary';
+        if (error.status === 503) loadModelInfo();
+      } finally {
+        if (modelInfo) {
+          predictButton.disabled = false;
+          predictButton.classList.remove('opacity-60', 'cursor-wait');
+        }
+      }
+    });
+
+    loadModelInfo();
+  })();
+</script>
+</div></main>
+
+
+</body></html>

@@ -1,0 +1,84 @@
+{
+  "metadata_schema_version": "1.0",
+  "status": "controlled local integration test only; not the active deployment artifact",
+  "model_name": "Project Sentinel canonical staged candidate",
+  "model_version": "1.1.0-reproducibility-benchmark",
+  "algorithm": "HistGradientBoostingClassifier",
+  "sklearn_version": "1.6.1",
+  "artifact": {
+    "filename": "sentinel_model_candidate_v1_1_0.joblib",
+    "sha256": "3c6fffc5dac3324fefbd043bcf532e909f9b5b2983d3ce1fd604a4efc3173e57"
+  },
+  "features": [
+    "absolute_magnitude",
+    "relative_velocity",
+    "miss_distance"
+  ],
+  "feature_schema": [
+    {
+      "name": "absolute_magnitude",
+      "dtype": "float64",
+      "required": true,
+      "unit": "mag",
+      "observed_min": 9.23,
+      "observed_max": 33.2,
+      "unit_verification": "Declared in legacy deployment metadata; source-level CSV metadata was not supplied."
+    },
+    {
+      "name": "relative_velocity",
+      "dtype": "float64",
+      "required": true,
+      "unit": "km/h",
+      "observed_min": 203.34643253,
+      "observed_max": 236990.1280878666,
+      "unit_verification": "Declared in legacy deployment metadata; source-level CSV metadata was not supplied."
+    },
+    {
+      "name": "miss_distance",
+      "dtype": "float64",
+      "required": true,
+      "unit": "km",
+      "observed_min": 6745.532515957,
+      "observed_max": 74798651.4521972,
+      "unit_verification": "Declared in legacy deployment metadata; source-level CSV metadata was not supplied."
+    }
+  ],
+  "units": {
+    "absolute_magnitude": "mag",
+    "relative_velocity": "km/h",
+    "miss_distance": "km"
+  },
+  "units_status": "Deployment-declared only; source-level unit metadata remains unresolved.",
+  "prediction_task": "Historical hazardous-label classification",
+  "impact_prediction": false,
+  "label_definition_status": "Unverified: the provided CSV did not include authoritative source metadata defining the hazardous label.",
+  "threshold": 0.09935210419840797,
+  "threshold_provenance": {
+    "model_sha256": "3c6fffc5dac3324fefbd043bcf532e909f9b5b2983d3ce1fd604a4efc3173e57",
+    "split_manifest_sha256": "81f4c0ed41c7c4b27b3dac4e95e10b14bb6186b0ba2b0b5cc936fe07b94e1656",
+    "partition": "validation",
+    "selection_method": "maximize F2 among thresholds with hazardous recall >= 0.95; deterministic ties prefer higher precision then lower threshold",
+    "minimum_hazardous_recall": 0.95,
+    "selected_validation_metrics": {
+      "threshold": 0.09935210419840797,
+      "precision": 0.30560451180824816,
+      "hazardous_recall": 0.9796610169491525,
+      "f2": 0.6797867335737807
+    }
+  },
+  "dataset_provenance": {
+    "rows": 90836,
+    "sha256": "61b67ccfd0c4b01b0c628ee7c9a32cba0149b5e1fe56619bbae1373bbd5b3e66",
+    "source_status": "The supplied CSV filename suggests NEO data, but a source URL, release/version, and field dictionary were not supplied."
+  },
+  "source_staged_metadata": {
+    "path": "sentinel_training/artifacts/staging/sentinel_model_candidate_v1_1_0.metadata.json",
+    "sha256": "a814be1d416f5ba7b80489b5bdf9bdfea22074c0b03c17138fef2f75f46f1c09"
+  },
+  "limitations": [
+    "This estimates the historical hazardous label in the supplied data, not collision or impact probability.",
+    "CSV-level source metadata, unit provenance, and hazardous-label definition remain unresolved.",
+    "The grouped test split is a reproducibility benchmark and not a demonstrably untouched independent holdout.",
+    "This metadata supports a controlled local integration test only and does not activate the staged candidate."
+  ]
+}
